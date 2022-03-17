@@ -1,0 +1,10 @@
+%table{
+    width: 99%;
+    border-collapse: collapse;
+    color: rgb(0, 0, 0);
+    margin: 0px auto;
+    text-align: center;
+    %t-content{
+        border: .5px solid rgb(170, 170, 170);
+    }
+}

@@ -1,0 +1,173 @@
+table {
+  width: 99%;
+  border-collapse: collapse;
+  color: black;
+  margin: 0px auto;
+  text-align: center; }
+  table table, table th, table td {
+    border: 0.5px solid #aaaaaa; }
+
+body {
+  background-image: url("/static/images/wallpaper.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  overflow: hidden;
+  direction: rtl; }
+
+nav {
+  background-color: #e6081b;
+  height: 35px; }
+  nav ul {
+    list-style: none;
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center; }
+    nav ul li {
+      margin-left: 15px;
+      font-weight: 600;
+      color: white;
+      cursor: pointer; }
+      nav ul li::before {
+        content: "";
+        height: 100%;
+        border: 1px white solid;
+        margin-left: 3px;
+        margin-right: 3px; }
+      nav ul li::after {
+        content: "";
+        height: 100%;
+        border: 1px white solid;
+        margin-left: 3px;
+        margin-right: 3px; }
+
+.backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  padding: 5px; }
+  .backdrop .form {
+    margin: auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    height: 100%; }
+    .backdrop .form .await_tr {
+      cursor: pointer; }
+      .backdrop .form .await_tr:hover {
+        background-color: #e00000; }
+
+#main_infos {
+  right: 15; }
+
+#recipts {
+  right: 125; }
+
+#reports {
+  right: 250; }
+
+#system {
+  right: 300; }
+
+.menue {
+  position: absolute;
+  top: 50%;
+  background-color: #e6081b;
+  text-align: center;
+  padding: 8px; }
+  .menue p {
+    color: white;
+    cursor: pointer; }
+    .menue p::after {
+      content: "";
+      width: 100%;
+      display: block;
+      border: 1px white solid;
+      margin-top: 5px; }
+    .menue p:hover {
+      color: tomato; }
+
+.showDate {
+  background-color: #e6081b;
+  padding: 5px;
+  position: absolute;
+  left: 40px;
+  top: 40px;
+  text-align: right;
+  box-shadow: gainsboro 6px 9px 8px; }
+  .showDate p {
+    font-size: 16px;
+    color: white;
+    font-weight: 600; }
+
+.showmMain {
+  background-color: #cecece;
+  padding: 5px;
+  position: absolute;
+  left: 30px;
+  top: 130px;
+  text-align: right;
+  border: 1px #e6081b solid; }
+  .showmMain p {
+    font-size: 16px;
+    color: #e6081b;
+    font-weight: 600;
+    cursor: pointer; }
+    .showmMain p:hover {
+      color: tomato; }
+
+.svg {
+  position: absolute;
+  left: 0;
+  bottom: -30;
+  width: 100%; }
+  .svg img {
+    width: 100%; }
+
+.btns {
+  display: flex; }
+  .btns .btnn {
+    margin: auto; }
+
+table {
+  max-height: 90vh;
+  overflow: auto; }
+
+.tr-data {
+  cursor: pointer; }
+  .tr-data:hover {
+    background-color: #e00000; }
+
+#trans i {
+  cursor: pointer;
+  opacity: 1;
+  transition: all .1s ease-in-out; }
+  #trans i:hover {
+    opacity: 0.5; }
+
+.loading {
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0; }
+  .loading .msg {
+    margin: auto;
+    text-align: center; }
+    .loading .msg i {
+      color: #a70000;
+      font-size: 5vmax;
+      display: block; }
+    .loading .msg span {
+      color: #000083;
+      font-size: 1vmax;
+      font-weight: 200; }
+
+/*# sourceMappingURL=home.css.map */

@@ -1,0 +1,415 @@
+<div class="forms" style="display: none;">
+    <!-- ctp -->
+    <form action="" id="ctp">
+        <h6 style="text-align: center;" class="mt-2 mb-2">تكويد ctp جديد</h6>
+        <div class="row">
+            <div class="col">
+                <input type="text" id="ctp_name" class="form-control" placeholder="الاسم">
+            </div>
+            <div class="col">
+                <input type="text" id="ctp_number" class="form-control" placeholder="رقم الهاتف">
+            </div>
+        </div>
+        <div class="btns mt-3">
+            <div class="btnn">
+            <button type="button" data-form_id="ctp" class="btn btn-success addinfos">اضافة</button>
+            <button type="button" class="btn btn-dark closeBackdrop">اغلاق</button>
+            </div>
+        </div>
+    </form>
+    <!-- printers -->
+    <form action="" id="printers">
+        <h6 style="text-align: center;" class="mt-2 mb-2">تكويد مطبعة جديد</h6>
+        <div class="row">
+            <div class="col">
+                <input type="text" id="printers_name" class="form-control" placeholder="الاسم">
+            </div>
+            <div class="col">
+                <input type="text" id="printers_number" class="form-control" placeholder="رقم الهاتف">
+            </div>
+        </div>
+        <div class="btns mt-3">
+            <div class="btnn">
+            <button type="button" data-form_id="printers" class="btn btn-success addinfos">اضافة</button>
+            <button type="button" class="btn btn-dark closeBackdrop">اغلاق</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- paper_type -->
+
+    <form action="" id="paper_type">
+        <h6 style="text-align: center;" class="mt-2 mb-2">تكويد نوع الورق جديد</h6>
+        <div class="row">
+            <div class="col">
+                <input type="text" id="paper_type_name" class="form-control" placeholder="الاسم">
+            </div>
+        </div>
+        <div class="btns mt-3">
+            <div class="btnn">
+            <button type="button" data-form_id="paper_type" class="btn btn-success addinfos">اضافة</button>
+            <button type="button" class="btn btn-dark closeBackdrop">اغلاق</button>
+            </div>
+        </div>
+    </form>
+
+    <!--service_name-->
+    <form action="" id="service_name">
+        <h6 style="text-align: center;" class="mt-2 mb-2">تكويد خدمة جديدة</h6>
+        <div class="row">
+            <div class="col">
+                <input type="text" id="service_name_name" class="form-control" placeholder="الاسم">
+            </div>
+        </div>
+        <div class="btns mt-3">
+            <div class="btnn">
+            <button type="button" data-form_id="service_name" class="btn btn-success addinfos">اضافة</button>
+            <button type="button" class="btn btn-dark closeBackdrop">اغلاق</button>
+            </div>
+        </div>
+    </form>
+
+    <!--service_ctp-->
+    <form action="" id="service_ctp">
+        <h6 style="text-align: center;" class="mt-2 mb-2">تكويد مورد خدمات جديد</h6>
+        <div class="row">
+            <div class="col">
+                <input type="text" id="service_ctp_name" class="form-control" placeholder="الاسم">
+            </div>
+            <div class="col">
+                <input type="text" id="service_ctp_number" class="form-control" placeholder="رقم الهاتف">
+            </div>
+        </div>
+        <div class="btns mt-3">
+            <div class="btnn">
+            <button type="button" data-form_id="service_ctp" class="btn btn-success addinfos">اضافة</button>
+            <button type="button" class="btn btn-dark closeBackdrop">اغلاق</button>
+            </div>
+        </div>
+    </form>
+
+<!-- recipt -->
+    <div id="recipt">
+        <form action="" id="reciptFORM">
+            <div class="mt-2 mb-2" id="trans" style="text-align: center;font-size: 18px; ">
+                <i class="fa fa-plus ml-2 mr-2 recipt_control" data-form_id="recipt" data-func="add"></i>
+                <i class="fa fa-pencil ml-2 mr-2 recipt_control" id="MOD" data-index="-1" data-form_id="recipt" data-func="modify"></i>
+                <p style="text-align: center;">
+                        <span id="index" style="color: green;">0</span>
+                                                :
+                        <span id="length" style="color: red;">0</span>
+                        
+                </p>
+            </div>
+            <h6 style="text-align: center;" class="mt-2 mb-2">اضافة فاتورة جديدة</h6>
+            <div class="row">
+                <div class="col">
+                    <label for="recipt_number" style="float: right;">رقم الفاتورة</label>
+                    <div class="clearfix"></div>
+                    <input type="text" id="recipt_number" disabled value="{{RECIPTSLENGTH + 1}}" class="form-control" placeholder="رقم الفاتورة">
+                </div>
+                <div class="col">
+                    <label for="recipt_zanka_name" style="float: right;">أسم الزنكة</label>
+                    <div class="clearfix"></div>
+                    <input type="text" autocomplete="off" id="recipt_zanka_name" class="form-control" placeholder="اسم الزنكة">
+                </div>
+                <div class="col">
+                    <label for="recipt_zanka_color_count" style="float: right;">عدد الالوان</label>
+                    <div class="clearfix"></div>
+                    <input type="text" id="recipt_zanka_color_count" class="form-control" placeholder="عدد الالوان">
+                </div>
+                <div class="col">
+                    <label for="recipt_ctp" style="float: right;">ctp</label>
+                    <div class="clearfix"></div>
+                    <select name="" id="recipt_ctp" class="form-control" placeholder="ctp">
+                        <option value="">اختر ctp</option>
+                        {% for ctp in CTP %}
+                        <option value="{{ctp.name}}" data-id="{{ctp.id}}">{{ctp.name}}</option>
+                        {% endfor %}
+                    </select>            
+                </div>
+                <div class="col">
+                    <label for="recipt_printers" style="float: right;">مطبعة</label>
+                    <div class="clearfix"></div>
+                    <select name="" id="recipt_printers" class="form-control" placeholder="مطبعة">
+                        <option value="">اختر مطبعة</option>
+                        {% for printers in PRINTERS %}
+                        <option value="{{printers.name}}" data-id="{{printers.id}}">{{printers.name}}</option>
+                        {% endfor %}
+                    </select>            
+                </div>
+                <div class="col">
+                    <label for="recipt_paper_type" style="float: right;">نوع الورق</label>
+                    <div class="clearfix"></div>
+                    <select name="" id="recipt_paper_type" class="form-control" placeholder="نوع الورق">
+                        <option value="">اختر نوع الورق</option>
+                        {% for paper in PAPER_TYPE %}
+                        <option value="{{paper.name}}" data-id="{{paper.id}}">{{paper.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="recipt_service_name" style="float: right;">خدمات</label>
+                    <div class="clearfix"></div>
+                    <select name="" id="recipt_service_name" class="form-control" placeholder="خدمات">
+                        <option value="-">اختر خدمة</option>
+                        {% for s in SERVICE_NAME %}
+                        <option value="{{s.name}}" data-id="{{s.id}}">{{s.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="recipt_service_ctp" style="float: right;">مورد خدمات</label>
+                    <div class="clearfix"></div>
+                    <select name="" id="recipt_service_ctp" class="form-control" placeholder="مورد خدمات">
+                        <option value="-">اختر مورد خدمات</option>
+                        {% for c in SERVICE_CTP %}
+                        <option value="{{c.name}}" data-id="{{c.id}}">{{c.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="recipt_zanka_size" style="float: right;">مقاس</label>
+                    <div class="clearfix"></div>
+                    <input type="text" id="recipt_zanka_size" class="form-control" placeholder="مقاس">
+                </div>
+                <div class="col">
+                    <label for="recipt_zanka_sa7abat_count" style="float: right;">عدد السحابات</label>
+                    <div class="clearfix"></div>
+                    <input type="text" id="recipt_zanka_sa7abat_count" class="form-control" placeholder="عدد السحابات">
+                </div>
+                <div class="col">
+                    <label for="recipt_zanka_far5_count" style="float: right;">العدد بالفرخ</label>
+                    <div class="clearfix"></div>
+                    <input type="text" id="recipt_zanka_far5_count" disabled class="form-control" placeholder="العدد بالفرخ">
+                </div>
+                <div class="col">
+                    <label for="recipt_notes" style="float: right;">ملاحظات</label>
+                    <div class="clearfix"></div>
+                    <input type="text" value="-" id="recipt_notes" class="form-control">
+                </div>
+            </div>
+            <label for="recipt_data" style="float: right;">التاريخ</label>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col"><input type="text" id="recipt_data1" minlength="2" maxlength="2" placeholder="dd" class="form-control date-add"></div>
+                <div class="col"><input type="text" id="recipt_data2" minlength="2" maxlength="2" placeholder="mm" class="form-control date-add"></div>
+                <div class="col"><input type="text" id="recipt_data3" minlength="4" maxlength="4" placeholder="yyyy" class="form-control date-add"></div>
+            </div>
+            <hr style="width: 80%; margin:15px auto; border: black 1px solid;">
+            <div style="max-height: 510px; overflow: auto;">
+                <h5 style="text-align: center;">الزنكات المضافة</h5>
+                <table class="table" id="Awaittable">
+                    <thead>
+                        <tr style="font-size: 13px;">
+                            <th scope="col">التاريخ</th>
+                            <th scope="col">num</th>
+                            <th scope="col">اسم الزنكه</th>
+                            <th scope="col">ctp</th>
+                            <th scope="col">عدد الالوان</th>
+                            <th scope="col">مطبعة</th>
+                            <th scope="col">نوع الورق</th>
+                            <th scope="col">مقاس</th>
+                            <th scope="col">عدد السحابات</th>
+                            <th scope="col">العدد بالفرخ</th>
+                            <th scope="col">خدمات</th>
+                            <th scope="col">مورد خدمات</th>
+                            <th scope="col">تاريخ الاستلام</th>
+                            <th scope="col">ملاحظات</th>
+                            <th scope="col">حذف</th>
+                            <th scope="col">تعديل</th>
+                          </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+            </div>
+
+            <div class="btns mt-3">
+                <div class="btnn">
+                <button type="button" class="btn btn-success recipt_control" data-func="local">اضافة</button>
+                <button type="button" class="btn btn-dark closeBackdrop">اغلاق</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!--search-->
+    <form action="" id="serach_form">
+        <h6 style="text-align: center;" class="mt-2 mb-2">عرض التقرير</h6>
+        <div class="row">
+            <div class="col">
+                <label for="reciptNumber" style="float: right;">رقم الفاتورة</label>
+                <div class="clearfix"></div>
+                <input type="text" id="reciptNumber" class="form-control" placeholder="رقم الفاتورة">
+            </div>
+            <div class="col">
+                <label for="zankaName" style="float: right;">أسم الزنكة</label>
+                <div class="clearfix"></div>
+                <input type="text" id="zankaName" class="form-control" placeholder="أسم الزنكة">
+            </div>
+            <div class="col">
+                <label for="colorCount" style="float: right;">عدد الالوان</label>
+                <div class="clearfix"></div>
+                <input type="text" id="colorCount" class="form-control" placeholder="عدد الالوان">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col">
+                <label for="ctpName" style="float: right;">ctp</label>
+                <div class="clearfix"></div>
+                <select name="" id="ctpName" class="form-control" placeholder="ctp">
+                    <option value="">اختر ctp</option>
+                    {% for ctp in CTP %}
+                    <option value="{{ctp.name}}" data-id="{{ctp.id}}">{{ctp.name}}</option>
+                    {% endfor %}
+                </select>            
+            </div>
+            <div class="col">
+                <label for="printerName" style="float: right;">مطبعة</label>
+                <div class="clearfix"></div>
+                <select name="" id="printerName" class="form-control" placeholder="مطبعة">
+                    <option value="">اختر مطبعة</option>
+                    {% for printers in PRINTERS %}
+                    <option value="{{printers.name}}" data-id="{{printers.id}}">{{printers.name}}</option>
+                    {% endfor %}
+                </select>            
+            </div>
+            <div class="col">
+                <label for="paperType" style="float: right;">نوع الورق</label>
+                <div class="clearfix"></div>
+                <select name="" id="paperType" class="form-control" placeholder="نوع الورق">
+                    <option value="">اختر نوع الورق</option>
+                    {% for paper in PAPER_TYPE %}
+                    <option value="{{paper.name}}" data-id="{{paper.id}}">{{paper.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="service" style="float: right;">خدمات</label>
+                <div class="clearfix"></div>
+                <select name="" id="service" class="form-control" placeholder="خدمات">
+                    <option value="">اختر خدمة</option>
+                    {% for s in SERVICE_NAME %}
+                    <option value="{{s.name}}" data-id="{{s.id}}">{{s.name}}</option>
+                    {% endfor %}
+                </select>            </div>
+            <div class="col">
+                <label for="serviceCtp" style="float: right;">مورد خدمات</label>
+                <div class="clearfix"></div>
+                <select name="" id="serviceCtp" class="form-control" placeholder="مورد خدمات">
+                    <option value="">اختر مورد خدمات</option>
+                    {% for c in SERVICE_CTP %}
+                    <option value="{{c.name}}" data-id="{{c.id}}">{{c.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col">
+                <label for="size" style="float: right;">مقاس</label>
+                <div class="clearfix"></div>
+                <input type="text" id="size" class="form-control" placeholder="مقاس">
+            </div>
+            <div class="col">
+                <label for="sahabat" style="float: right;">عدد السحابات</label>
+                <div class="clearfix"></div>
+                <input type="text" id="sahabat" class="form-control" placeholder="عدد السحابات">
+            </div>
+            <div class="col">
+                <label for="farkh" style="float: right;">العدد بالفرخ</label>
+                <div class="clearfix"></div>
+                <input type="text" id="farkh" class="form-control" placeholder="العدد بالفرخ">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="dateOfRecivie" style="float: right;">من</label>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col"><input type="text" id="dateOfRecivieS1" minlength="2" maxlength="2" placeholder="dd" class="form-control date-add"></div>
+                    <div class="col"><input type="text" id="dateOfRecivieS2" minlength="2" maxlength="2" placeholder="mm" class="form-control date-add"></div>
+                    <div class="col"><input type="text" id="dateOfRecivieS3" minlength="4" maxlength="4" placeholder="yyyy" class="form-control date-add"></div>
+                </div>
+            </div>
+            <div class="col">
+                <label for="dateOfRecivie" style="float: right;">الي</label>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col"><input type="text" id="dateOfRecivieE1" minlength="2" maxlength="2" placeholder="dd" class="form-control date-add"></div>
+                    <div class="col"><input type="text" id="dateOfRecivieE2" minlength="2" maxlength="2" placeholder="mm" class="form-control date-add"></div>
+                    <div class="col"><input type="text" id="dateOfRecivieE3" minlength="4" maxlength="4" placeholder="yyyy" class="form-control date-add"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="btns mt-3">
+            <div class="btnn">
+            <button type="button" data-form_id="recipt" class="btn btn-primary serach">بحث</button>
+            <button type="button" class="btn btn-dark closeBackdrop">اغلاق</button>
+            </div>
+        </div>
+    </form>
+        <!-- serach_form_by_date -->
+        <form action="" id="serach_form_by_date">
+            <h6 style="text-align: center;" class="mt-2 mb-2">بحث زمني</h6>
+            <div class="row">
+                <div class="col">
+                    <label for="dateOfRecivie" style="float: right;">من</label>
+                    <div class="clearfix"></div>
+                    <input type="text" data-id="dateOfRecivieS" placeholder="dd-mm-yyyy" class="form-control" placeholder="من">
+                        </div>
+                <div class="col">
+                    <label for="dateOfRecivie" style="float: right;">الي</label>
+                    <div class="clearfix"></div>
+                    <input type="text" data-id="dateOfRecivieE" placeholder="dd-mm-yyyy" class="form-control" placeholder="الي">
+                        </div>
+            </div>
+            <div class="btns mt-3">
+                <div class="btnn">
+                <button type="button" data-form_id="ctp" class="btn btn-info serach_by_date">بحث</button>
+                <button type="button" class="btn btn-dark closeBackdrop">اغلاق</button>
+                </div>
+            </div>
+        </form>
+        <!-- user -->
+        <form action="" id="user">
+            <h6 style="text-align: center;" class="mt-2 mb-2">انشاء مستخدم</h6>
+            <div class="row">
+                <div class="col">
+                    <label for="name" style="float: right;">الاسم</label>
+                    <div class="clearfix"></div>
+                    <input type="text" id="user_name" class="form-control" placeholder="الاسم">
+                </div>
+                <div class="col">
+                    <label for="pass" style="float: right;">كلمة المرور</label>
+                    <div class="clearfix"></div>
+                    <input type="password" id="user_pass" class="form-control" placeholder="كلمة المرور">
+               </div>
+            <div class="col">
+                <label for="type" style="float: right;">نوع المستخدم</label>
+                <div class="clearfix"></div>
+                <select name="" id="user_type" class="form-control" placeholder="نوع المستخدم">
+                    <option value="">اختر نوع المستخدم</option>
+                    <option value="admin">مسؤول</option>
+                    <option value="user">مستخدم</option>
+                </select>
+            </div>
+            </div>
+            <div class="btns mt-3">
+                <div class="btnn">
+                    <button type="button" data-form_id="user" class="btn btn-success addinfos">اضافة</button>
+                    <button type="button" class="btn btn-dark closeBackdrop">اغلاق</button>
+                </div>
+            </div>
+        </form>
+</div>

@@ -1,0 +1,183 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{css[0]}}">
+    <link rel="stylesheet" href="{{css[1]}}">
+    <link rel="stylesheet" href="{{css[2]}}">
+    <link rel="stylesheet" href="{{css[3]}}">
+    <style>
+        body{
+            background-image: unset;
+            overflow: scroll;
+        }
+    </style>
+    <title>تعديل</title>
+</head>
+<body>
+    <form action="" id="updateRowForm" style="padding: 10px;">
+        <div class="row">
+            <div class="col">
+                <label for="recipt_number" style="float: right;">رقم الفاتورة</label>
+                <div class="clearfix"></div>
+                <input type="text" disabled id="recipt_number" class="form-control input" value="{{r.reciptNumber}}" placeholder="رقم الفاتورة">
+            </div>
+            <div class="col">
+                <label for="recipt_zanka_name" style="float: right;">أسم الزنكة</label>
+                <div class="clearfix"></div>
+                <input type="text" id="recipt_zanka_name" value="{{r.zankaName}}" class="form-control input" placeholder="أسم الزنكة">
+            </div>
+            <div class="col">
+                <label for="recipt_zanka_color_count" style="float: right;">عدد الالوان</label>
+                <div class="clearfix"></div>
+                <input type="text" id="recipt_zanka_color_count" value="{{r.colorCount}}" class="form-control input" placeholder="عدد الالوان">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col">
+                <label for="recipt_ctp" style="float: right;">ctp</label>
+                <div class="clearfix"></div>
+                <select name="" id="recipt_ctp" class="form-control input" placeholder="ctp">
+                    <option value="">اختر ctp</option>
+                    {% for ctp in CTP %}
+                    {% if ctp.name|trim == r.ctpName|trim %}
+                    <option value="{{ctp.name}}" data-id="{{ctp.id}}" selected>{{ctp.name}}</option>
+                    {% else %}
+                    <option value="{{ctp.name}}" data-id="{{ctp.id}}">{{ctp.name}}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>            
+            </div>
+            <div class="col">
+                <label for="recipt_printers" style="float: right;">مطبعة</label>
+                <div class="clearfix"></div>
+                <select name="" id="recipt_printers" class="form-control input" placeholder="مطبعة">
+                    <option value="">اختر مطبعة</option>
+                    {% for printers in PRINTERS %}
+                    {% if printers.name|trim == r.printerName|trim %}
+                    <option value="{{printers.name}}" data-id="{{printers.id}}" selected>{{printers.name}}</option>
+                    {% else %}
+                    <option value="{{printers.name}}" data-id="{{printers.id}}">{{printers.name}}</option>
+                    {% endif %}
+
+                    {% endfor %}
+                </select>            
+            </div>
+            <div class="col">
+                <label for="recipt_paper_type" style="float: right;">نوع الورق</label>
+                <div class="clearfix"></div>
+                <select name="" id="recipt_paper_type" class="form-control input" placeholder="نوع الورق">
+                    <option value="">اختر نوع الورق</option>
+                    {% for paper in PAPER_TYPE %}
+
+                    {% if paper.name|trim == r.paperType|trim %}
+                    <option value="{{paper.name}}" data-id="{{paper.id}}" selected>{{paper.name}}</option>
+                    {% else %}
+                    <option value="{{paper.name}}" data-id="{{paper.id}}">{{paper.name}}</option>
+                    {% endif %}
+
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col">
+                <label for="recipt_service_name" style="float: right;">خدمات</label>
+                <div class="clearfix"></div>
+                <select name="" id="recipt_service_name" class="form-control input" placeholder="خدمات">
+                    <option value="">اختر خدمة</option>
+                    {% for s in SERVICE_NAME %}
+
+                    {% if s.name|trim == r.service|trim %}
+                    <option value="{{s.name}}" data-id="{{s.id}}" selected>{{s.name}}</option>
+                    {% else %}
+                    <option value="{{s.name}}" data-id="{{s.id}}">{{s.name}}</option>
+                    {% endif %}
+
+                    {% endfor %}
+                </select>           
+             </div>
+            <div class="col">
+                <label for="recipt_service_ctp" style="float: right;">مورد خدمات</label>
+                <div class="clearfix"></div>
+                <select name="" id="recipt_service_ctp" class="form-control input" placeholder="مورد خدمات">
+                    <option value="">اختر مورد خدمات</option>
+                    {% for c in SERVICE_CTP %}
+
+                    {% if c.name|trim == r.serviceCtp|trim %}
+                    <option value="{{c.name}}" data-id="{{c.id}}" selected>{{c.name}}</option>
+                    {% else %}
+                    <option value="{{c.name}}" data-id="{{c.id}}">{{c.name}}</option>
+                    {% endif %}
+
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    
+    
+        <div class="row">
+            <div class="col">
+                <label for="recipt_zanka_size" style="float: right;">مقاس</label>
+                <div class="clearfix"></div>
+                <input type="text" id="recipt_zanka_size" value="{{r.size}}" class="form-control input" placeholder="مقاس">
+            </div>
+            <div class="col">
+                <label for="recipt_zanka_sa7abat_count" style="float: right;">عدد السحابات</label>
+                <div class="clearfix"></div>
+                <input type="text" id="recipt_zanka_sa7abat_count" value="{{r.sahabat}}"  class="form-control input" placeholder="عدد السحابات">
+            </div>
+            <div class="col">
+                <label for="recipt_zanka_far5_count" style="float: right;">العدد بالفرخ</label>
+                <div class="clearfix"></div>
+                <input type="text" id="recipt_zanka_far5_count" value="{{r.farkh}}" class="form-control input" placeholder="العدد بالفرخ">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="recipt_data" style="float: right;">التاريخ</label>
+            <div class="clearfix"></div>
+            <div class="row">
+                {% set rt = r.dateofrecipt.split('-') %}
+                <div class="col"><input type="text" id="recipt_data1" value="{{rt[0]}}" class="form-control input"></div>
+                <div class="col"><input type="text" id="recipt_data2" value="{{rt[1]}}" class="form-control input"></div>
+                <div class="col"><input type="text" id="recipt_data3" value="{{rt[2]}}" class="form-control input"></div>
+            </div>
+                </div>
+        <div class="form-group">
+            <label for="recipt_notes" style="float: right;">ملاحظات</label>
+            <div class="clearfix"></div>
+            <input type="text" value="{{r.notes}}" id="recipt_notes" class="form-control input">
+        </div>
+    
+        <div class="btns mt-3">
+            <div class="btnn">
+            <button type="button" data-type="recipt" data-id="{{id}}" class="btn btn-primary updateRow">تعديل</button>
+            <button type="button" data-type="recipt" data-id="{{id}}" class="btn btn-danger deleteRow">حذف</button>
+            </div>
+        </div>
+    </form>
+    <script src="{{js[0]}}"></script>
+    <script src="{{js[1]}}"></script>
+    <script src="{{js[2]}}"></script>
+    <script src="{{js[3]}}"></script>
+    <script>
+        $(".deleteRow").on('click' , function(){
+            $.ajax({
+            type: 'DELETE',
+            url: '/api/deleteData',
+            data: JSON.stringify({"type" : $(this).data("type") , "id" : $(this).data("id")}),
+            contentType: 'application/json;charset=UTF-8',
+            success : function(data){
+                window.close()
+            },
+            error : function(errmsg) {
+                alert(errmsg.statusText)
+            }
+            });
+        })
+    </script>
+</body>
+</html>

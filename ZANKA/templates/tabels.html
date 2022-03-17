@@ -1,0 +1,234 @@
+<div class="tabels" style="display: none;">
+
+{% if CTP|length != 0 %}
+    <div id="table_ctp">
+    <table id="table__ctp">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">الاسم</th>
+            <th scope="col">رقم الهاتف</th>
+            <th scope="col">تعديل</th>
+            <th scope="col">حذف</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for ctp in CTP %}
+          <tr>
+            <td>{{ctp.id}}</td>
+            <td><input type="text"  data-key="ctp_name" class="toChange" value="{{ctp.name}}" disabled></td>
+            <td><input type="text"  data-key="ctp_number" class="toChange" value="{{ctp.number}}" disabled></td>
+
+            
+            {% set bool = namespace(here=false) %}
+            {% for R in RECIPTS %}
+            {% if R.ctpName == ctp.name  %}
+            {% set bool.here = True %}
+            {% endif %}
+            {% endfor %}
+
+
+            {% if bool.here == False %}
+            <td><button style="color: white;" class="btn btn-info update" data-id="{{ctp.id}}" data-type="ctp">ت</button></td>
+            <td><button style="color: white;" class="btn btn-danger delete" data-id="{{ctp.id}}" data-type="ctp">ح</button></td>
+            {% else %}
+            <td><button disabled style="color: white;" class="btn btn-info">ت</button></td>
+          <td><button  disabled style="color: white;" class="btn btn-danger">ح</button></td>
+            {% endif %}
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+      {% else %}
+      <h6 style="text-align: center;" class="mt-2 mb-2">لا يوجد بيانات</h6>
+      {% endif %}
+
+
+      {% if PRINTERS|length != 0 %}
+    <div id="table_printers">
+    <table id="table__printers">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">الاسم</th>
+            <th scope="col">رقم الهاتف</th>
+            <th scope="col">تعديل</th>
+            <th scope="col">حذف</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for printers in PRINTERS %}
+          <tr>
+            <td>{{printers.id}}</td>
+            <td><input type="text"  data-key="printers_name" class="toChange" value="{{printers.name}}" disabled></td>
+            <td><input type="text"  data-key="printers_number" class="toChange" value="{{printers.number}}" disabled></td>
+
+
+            {% set bool = namespace(here=false) %}
+            {% for R in RECIPTS %}
+            {% if R.printerName == printers.name  %}
+            {% set bool.here = True %}
+            {% endif %}
+            {% endfor %}
+
+
+            {% if bool.here == False %}
+            <td><button style="color: white;" class="btn btn-info update" data-id="{{printers.id}}" data-type="printers">ت</button></td>
+            <td><button style="color: white;" class="btn btn-danger delete" data-id="{{printers.id}}" data-type="printers">ح</button></td>
+            {% else %}
+            <td><button disabled style="color: white;" class="btn btn-info">ت</button></td>
+          <td><button  disabled style="color: white;" class="btn btn-danger">ح</button></td>
+            {% endif %}
+
+
+
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+      {% else %}
+      <h6 style="text-align: center;" class="mt-2 mb-2">لا يوجد بيانات</h6>
+      {% endif %}
+
+
+      {% if PAPER_TYPE|length != 0 %}
+      <div id="table_paper_type">
+      <table id="table__paper_type">
+          <thead>
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">الاسم</th>
+              <th scope="col">تعديل</th>
+              <th scope="col">حذف</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for paper_type in PAPER_TYPE %}
+            <tr>
+              <td>{{paper_type.id}}</td>
+              <td><input type="text"  data-key="paper_type_name" class="toChange" value="{{paper_type.name}}" disabled></td>
+              
+              
+              
+              {% set bool = namespace(here=false) %}
+              {% for R in RECIPTS %}
+              {% if R.paperType == paper_type.name  %}
+              {% set bool.here = True %}
+              {% endif %}
+              {% endfor %}
+  
+  
+              {% if bool.here == False %}
+              <td><button style="color: white;" class="btn btn-info update" data-id="{{paper_type.id}}" data-type="paper_type">ت</button></td>
+              <td><button style="color: white;" class="btn btn-danger delete" data-id="{{paper_type.id}}" data-type="paper_type">ح</button></td>
+              {% else %}
+              <td><button disabled style="color: white;" class="btn btn-info">ت</button></td>
+            <td><button  disabled style="color: white;" class="btn btn-danger">ح</button></td>
+              {% endif %}
+              
+              
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+        {% else %}
+        <h6 style="text-align: center;" class="mt-2 mb-2">لا يوجد بيانات</h6>
+        {% endif %}
+
+
+        {% if SERVICE_NAME|length != 0 %}
+        <div id="table_service_name">
+        <table id="table__service_name">
+            <thead>
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">الاسم</th>
+                <th scope="col">تعديل</th>
+                <th scope="col">حذف</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for service_name in SERVICE_NAME %}
+              <tr>
+                <td>{{service_name.id}}</td>
+                <td><input type="text"  data-key="service_name_name" class="toChange" value="{{service_name.name}}" disabled></td>
+               
+               
+                {% set bool = namespace(here=false) %}
+                {% for R in RECIPTS %}
+                {% if R.service == service_name.name  %}
+                {% set bool.here = True %}
+                {% endif %}
+                {% endfor %}
+    
+    
+                {% if bool.here == False %}
+                <td><button style="color: white;" class="btn btn-info update" data-id="{{service_name.id}}" data-type="service_name">ت</button></td>
+                <td><button style="color: white;" class="btn btn-danger delete" data-id="{{service_name.id}}" data-type="service_name">ح</button></td>
+                {% else %}
+                <td><button disabled style="color: white;" class="btn btn-info">ت</button></td>
+              <td><button  disabled style="color: white;" class="btn btn-danger">ح</button></td>
+                {% endif %}
+               
+               
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+          {% else %}
+          <h6 style="text-align: center;" class="mt-2 mb-2">لا يوجد بيانات</h6>
+          {% endif %}
+  
+
+          {% if SERVICE_CTP|length != 0 %}
+          <div id="table_service_ctp">
+          <table id="table__service_ctp">
+              <thead>
+                <tr>
+                  <th scope="col">id</th>
+                  <th scope="col">الاسم</th>
+                  <th scope="col">رقم الهاتف</th>
+                  <th scope="col">تعديل</th>
+                  <th scope="col">حذف</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for service_ctp in SERVICE_CTP %}
+                <tr>
+                  <td>{{service_ctp.id}}</td>
+                  <td><input type="text"  data-key="service_ctp_name" class="toChange" value="{{service_ctp.name}}" disabled></td>
+                  <td><input type="text"  data-key="service_ctp_number" class="toChange" value="{{service_ctp.number}}" disabled></td>
+                 
+                 
+                 
+                  {% set bool = namespace(here=false) %}
+                  {% for R in RECIPTS %}
+                  {% if R.serviceCtp == service_ctp.name  %}
+                  {% set bool.here = True %}
+                  {% endif %}
+                  {% endfor %}
+      
+      
+                  {% if bool.here == False %}
+                  <td><button style="color: white;" class="btn btn-info update" data-id="{{service_ctp.id}}" data-type="service_ctp">ت</button></td>
+                  <td><button style="color: white;" class="btn btn-danger delete" data-id="{{service_ctp.id}}" data-type="service_ctp">ح</button></td>
+                  {% else %}
+                  <td><button disabled style="color: white;" class="btn btn-info">ت</button></td>
+                <td><button  disabled style="color: white;" class="btn btn-danger">ح</button></td>
+                  {% endif %}
+
+
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+            {% else %}
+            <h6 style="text-align: center;" class="mt-2 mb-2">لا يوجد بيانات</h6>
+            {% endif %}
+
+</div>

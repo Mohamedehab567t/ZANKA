@@ -1,0 +1,8 @@
+@mixin prifixer($prop , $val) {
+    #{'-' + 'wibkit' + '-' + $prop} : $val;
+    #{'-' + 'moz' + '-' + $prop} : $val;
+    #{'-' + 'o' + '-' + $prop} : $val;
+    #{'-' + 'ms' + '-' + $prop} : $val;
+    
+    #{$prop} : $val;
+}

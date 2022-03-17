@@ -1,0 +1,155 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{css[0]}}">
+    <link rel="stylesheet" href="{{css[1]}}">
+    <link rel="stylesheet" href="{{css[2]}}">
+    <link rel="stylesheet" href="{{css[3]}}">
+    <style type="text/css" media="print">
+      @page { size: landscape; }
+    </style>
+    <title>تقرير محدد</title>
+</head>
+<body style="overflow: scroll; background-color: white; background-image: unset;">
+    <div class="head mt-2 mb-2" style="display: flex; justify-content: center; gap: 250px;">
+        <p style="font-size: 13px;">شركة ديزاين لخدمات الطباعة</p>
+        <p style="font-size: 20px; font-weight: bold;">تقرير يومي محدد</p>
+        <p style="font-size: 15px;">{{date}}</p>
+    </div>
+    {% if data|length != 0 %}
+<div id="table_recipt" class="mb-4">
+<table id="table__recipt" , style="overflow: scroll;">
+    <thead>
+      <tr style="font-size: 13px;">
+        <th scope="col">التاريخ</th>
+        <th scope="col">num</th>
+        <th scope="col">رقم الزنكة</th>
+        <th scope="col">اسم الزنكه</th>
+        <th scope="col">ctp</th>
+        <th scope="col">عدد الالوان</th>
+        <th scope="col">مطبعة</th>
+        <th scope="col">نوع الورق</th>
+        <th scope="col">مقاس</th>
+        <th scope="col">عدد السحابات</th>
+        <th scope="col">العدد بالفرخ</th>
+        <th scope="col">خدمات</th>
+        <th scope="col">مورد خدمات</th>
+        <th scope="col">تاريخ الاستلام</th>
+        <th scope="col">ملاحظات</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% set downnum = namespace(num=0) %}
+      {% set counter = namespace(c=1) %}
+    {% for r in data %}
+      {% set upnum = namespace(num=r.reciptNumber) %}
+      <tr class="tr-data" data-rid="{{r.id}}" style="font-size: 13px;">
+          <td  id="recipt_data">{{r.dateofrecipt2}}</td>
+          <td  id="recipt_number">{{r.reciptNumber}}</td>
+          {% if downnum.num == upnum.num %}
+          {% set counter.c = counter.c + 1 %}
+          <td> {{counter.c}} </td>
+          {% else %}
+          {% set counter.c = 1 %}
+          <td> {{counter.c}} </td>
+          {% endif %}
+          <td  id="recipt_zanka_name"> {{r.zankaName}} </td>
+          <td  id="recipt_ctp"> {{r.ctpName}} </td>
+          <td  id="recipt_zanka_color_count"> {{r.colorCount}} </td>
+          <td  id="recipt_printers"> {{r.printerName}} </td>
+          <td  id="recipt_paper_type"> {{r.paperType}} </td>
+          <td  id="recipt_zanka_size"> {{r.size}} </td>
+          <td  id="recipt_zanka_sa7abat_count"> {{r.sahabat}} </td>
+          <td  id="recipt_zanka_far5_count"> {{r.farkh}} </td>
+          <td  id="recipt_service_name"> {{r.service}} </td>
+          <td  id="recipt_service_ctp"> {{r.serviceCtp}} </td>
+          <td>  </td>
+          <td id="recipt_notes" style="width: 150px;"> {{r.notes}} </td>
+      </tr>
+      {% set downnum.num = upnum.num %}
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+  {% else %}
+  <h6 style="text-align: center;" class="mt-2 mb-2">لا يوجد بيانات</h6>
+  {% endif %}
+
+  <div id="table_total" style="width: 35%; margin: 10px auto;">
+    <table id="table__total">
+        <thead>
+          <tr>
+            <th scope="col">نوع الورق</th>
+            <th scope="col">عدد الفرخ</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for r in rows %}
+          <tr>
+            <td>{{r}}</td>
+            <td>{{rows[r]}}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <script src="{{js[0]}}"></script>
+    <script src="{{js[1]}}"></script>
+    <script src="{{js[2]}}"></script>
+    <script src="../static/js/TableConverter.js"></script>
+    <script>
+      $(".tr-data").on('click' , function(){
+        let tds = Array.from($(this).children())
+        let dict = {}
+        dict['rid'] = $(this).data('rid')
+        tds.forEach(e => {
+          if($(e).is('td') && $(e).attr('id') != undefined){
+            dict[$(e).attr('id')] = e.innerText
+          }
+        })
+        console.log(dict)
+            $.ajax({
+            type: 'POST',
+                url: '/api/getData',
+                 data: JSON.stringify(dict),
+                 contentType: 'application/json;charset=UTF-8',
+                 success : function(data){
+                    var newWin = open('تعديل','_blank',"width=800","toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500");
+                    let html = document.createElement('html')
+                    $(html).html(data)
+                    newWin.resizeTo(500, 800);
+                    newWin.document.write(html.innerHTML);
+                },
+                 error : function(errmsg) {
+                    alert(errmsg.statusText)
+               }
+              });
+      })
+      </script>
+      <script>
+        function doc_keyUp(e) {
+    // this would test for whichever key is 40 (down arrow) and the ctrl key at the same time
+    if (e.ctrlKey && e.key == "z") {
+      const datatable = document.getElementById("table__recipt")
+      const exporter = new TableConverterCSV(datatable);
+      const csvOutput = exporter.convertToCSV();
+      const csvBlob = new Blob([csvOutput], {type : "text/csv"});
+      const bloUrl = URL.createObjectURL(csvBlob);
+      const anchorElement = document.createElement("a");
+      anchorElement.href = bloUrl;
+      anchorElement.download = "report";
+      anchorElement.click();
+      setTimeout(()=> {
+        URL.revokeObjectURL(bloUrl)
+      }, 500)
+    }
+
+}
+document.addEventListener('keyup', doc_keyUp, false);
+
+      </script>
+</body>
+</html>

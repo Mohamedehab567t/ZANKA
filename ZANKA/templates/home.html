@@ -1,0 +1,87 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{css[0]}}">
+    <link rel="stylesheet" href="{{css[1]}}">
+    <link rel="stylesheet" href="{{css[2]}}">
+    <link rel="stylesheet" href="{{css[3]}}">
+    <title>الرئيسية</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li class="menueBar" data-menue="main_infos">البيانات الاساسية</li>
+            <li class="menueBar" data-menue="recipts">فاتورة</li>
+            <li class="menueBar" data-menue="reports">تقارير</li>
+            <li class="menueBar" data-menue="system" style="display: none;">النظام</li>
+        </ul>
+    </nav>
+        <div class="backdrop" style="display: none;">
+          <!--  <span style="float: right; cursor: pointer;" class="closeBackdrop mt-2 mr-3">
+                <i class="fa fa-times closeBackdrop" style="color: white;"></i>
+            </span> -->
+            <div class="form">
+
+            </div>
+        </div>
+
+        <div class="menuesss">
+        <div id="main_infos" class="menue" style="display: none;">
+            <p class="menueItem" data-form="ctp">ctp</p>
+            <p class="menueItem" data-form="printers">مطابع</p>
+            <p class="menueItem" data-form="paper_type">نوع الورق</p>
+            <p class="menueItem" data-form="service_name">خدمات بعد الطباعه</p>
+            <p class="menueItem" data-form="service_ctp">مورد الخدمات</p>
+        </div>
+        <div id="recipts" class="menue" style="display: none;">
+            <p class="menueItem" data-form="recipt">فاتورة تشغيل مطابع</p>
+        </div>
+        <div id="reports" class="menue" style="display: none;">
+            <p class="menueItem" data-form="serach_form">تقرير محدد</p>
+        </div>
+        <div id="system" class="menue" style="display: none;">
+            <p>تغيير مستخدم</p>
+            <p class="menueItem" data-form="user">انشاء مستخدم</p>
+        </div>
+    </div>
+
+
+    <div class="showDate">
+        <p id="date">التاريخ : {{date}}</p>
+        <p id="day">اليوم : {{day}}</p>
+    </div>
+
+    <div class="showmMain">
+        <h6 style="text-align: center;" class="mt-2 mb-2">عرض البيانات الاساسية</h6>
+        <p class="main_item" data-table="table_ctp">ctp</p>
+        <p class="main_item" data-table="table_printers">مطابع</p>
+        <p class="main_item" data-table="table_paper_type">نوع الورق</p>
+        <p class="main_item" data-table="table_service_name">خدمات بعد الطباعه</p>
+        <p class="main_item" data-table="table_service_ctp">مورد الخدمات</p>
+        <p><a href="{{url_for('home.backup')}}">BackUp</a></p>
+    </div>
+    <div class="svg">
+        <img src="../static/images/Layer 1.png" alt="">
+    </div>
+
+
+    <div class="loading" style="display: none;">
+        <div class="msg">
+        <i class="fa fa-spinner fa-spin mb-3"></i>
+        <span id="msgToWait">رسالة تعرض</span>
+    </div>
+    </div>
+
+    <script src="{{js[0]}}"></script>
+    <script src="{{js[1]}}"></script>
+    <script src="{{js[2]}}"></script>
+    <script src="{{js[3]}}"></script>
+
+    <!--forms-->
+    {% include 'forms.html' %}
+    <!--tabels-->
+    {% include 'tabels.html' %}
+</body>
+</html>
